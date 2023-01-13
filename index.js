@@ -23,14 +23,13 @@ client.on('messageCreate', async function(message) {
         // Ignore messages from the bot itself
         if(message.author.bot) return;
         const gptResponse = await openai.createCompletion({
-            model: "davinci",
-            prompt: `ChatGPT is a friendly chatbot.\n\
-            ChatGPT: Hello, how are you?\n\
-            ${message.author.username}: ${message.content}\n\
-            ChatGPT:`,
-            temperature: 0.9,
+            model: "text-davinci-003",
+            prompt: `Hey give me a response for this : ${message.content}`,
+            temperature: 0.5,
             max_tokens: 100,
-            stop: ["ChatGPT:", `${message.author.username}:`],
+            top_p: 1.0,
+            frequency_penalty: 0.5,
+            presence_penalty: 0.5,
         });
         message.reply(`${gptResponse.data.choices[0].text}`);
         return;
