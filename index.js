@@ -26,7 +26,7 @@ client.on('messageCreate', async function(message) {
             model: "text-davinci-003",
             prompt: `Hey give me a response for this : ${message.content}`,
             temperature: 0.5,
-            max_tokens: 100,
+            max_tokens: 500,
             top_p: 1.0,
             frequency_penalty: 0.5,
             presence_penalty: 0.5,
