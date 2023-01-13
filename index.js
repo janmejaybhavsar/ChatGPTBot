@@ -20,6 +20,7 @@ const openai = new OpenAIApi(config);
 // Check for a message from a user
 client.on('messageCreate', async function(message) {
     try{
+        if(!message.content.includes("<@1063363721172361226>")) return;
         // Ignore messages from the bot itself
         if(message.author.bot) return;
         const gptResponse = await openai.createCompletion({
